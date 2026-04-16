@@ -100,29 +100,19 @@ async function inicializarDatos() {
     if (userCount === 0) {
       console.log("📦 Creando datos iniciales...");
       
-      // Crear usuario admin
-      await User.create({
-        name: "Administrador",
-        user: "admin",
-        pass: "admin123",
-        role: "admin"
-      });
-      
-      // Crear usuario chef demo
-      await User.create({
-        name: "Chef Principal",
-        user: "chef1",
-        pass: "chef123",
-        role: "chef"
-      });
-      
-      // Crear usuario mesero demo
-      await User.create({
-        name: "Mesero de Turno",
-        user: "mesero1",
-        pass: "mes123",
-        role: "mesero"
-      });
+      const demoUsers = [
+        { name: "Administrador", user: "admin", pass: "admin123", role: "admin" },
+        { name: "Chef Principal", user: "chef1", pass: "chef123", role: "chef" },
+        { name: "Mesero de Turno", user: "mesero1", pass: "mes123", role: "mesero" }
+      ];
+
+      for (const u of demoUsers) {
+        const exists = await User.findOne({ user: u.user });
+        if (!exists) {
+          await User.create(u);
+          console.log(`👤 Usuario ${u.user} creado con éxito`);
+        }
+      }
       
       // Crear productos de ejemplo
       await Product.create([
