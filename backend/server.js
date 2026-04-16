@@ -24,7 +24,10 @@ app.use(express.json());
 
 // Conexión a MongoDB (Base de datos propia del usuario)
 mongoose.connect("mongodb+srv://admin:hamburguesas123@coreagrill.efjzjy5.mongodb.net/coreagrill?retryWrites=true&w=majority")
-  .then(() => console.log("🟢 Conectado a TU PROPIA MongoDB"))
+  .then(() => {
+    console.log("🟢 Conectado a TU PROPIA MongoDB");
+    inicializarDatos();
+  })
   .catch(err => console.log("🔴 Error:", err));
 
 // ============================
