@@ -12,13 +12,10 @@ const Login = () => {
   const { login } = useApp()
   const navigate = useNavigate()
   
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const doLogin = async (user, pass) => {
     setLoading(true)
-    
     try {
-      // Usa API.login directamente
-      const userData = await API.login(credentials.user, credentials.pass)
+      const userData = await API.login(user, pass)
       login(userData)
       
       const redirectPath = {
@@ -35,13 +32,15 @@ const Login = () => {
       setLoading(false)
     }
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    doLogin(credentials.user, credentials.pass)
+  }
   
   const quickLogin = (user, pass) => {
     setCredentials({ user, pass })
-    // Pequeño timeout para asegurar que el estado se actualice
-    setTimeout(() => {
-      handleSubmit({ preventDefault: () => {} })
-    }, 100)
+    doLogin(user, pass)
   }
   
   return (
