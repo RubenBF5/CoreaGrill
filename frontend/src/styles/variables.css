@@ -1,0 +1,16 @@
+:root {
+  --bg: #060810;
+  --surface: #0e1117;
+  --surface2: #161b27;
+  --border: #1e2535;
+  --gold: #f5a623;
+  --gold2: #e8920a;
+  --green: #22c55e;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --text: #f1f5f9;
+  --muted: #64748b;
+  --chef-color: #f97316;
+  --waiter-color: #8b5cf6;
+  --admin-color: #f5a623;
+}

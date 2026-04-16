@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.container {
+  padding: 15px;
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form input {
+  flex: 1;
+  padding: 10px;
+}
+
+.form button {
+  padding: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* Tablet */
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* iPad / Desktop */
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+}

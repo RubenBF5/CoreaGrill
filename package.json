@@ -1,0 +1,14 @@
+{
+  "name": "coreagrill",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently \"cd backend && node server.js\" \"cd frontend && npm run dev\"",
+    "start": "concurrently \"cd backend && node server.js\" \"cd frontend && npm run start\"",
+    "backend": "cd backend && node server.js",
+    "frontend": "cd frontend && npm run dev",
+    "frontend:host": "cd frontend && npm run start"
+  },
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
