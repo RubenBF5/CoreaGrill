@@ -1,5 +1,5 @@
-// URL tomada de variables de entorno o local
-const URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+// URL tomada de variables de entorno o relativa para monolito
+const URL = import.meta.env.VITE_API_URL || "";
 
 const API = {
   // Auth

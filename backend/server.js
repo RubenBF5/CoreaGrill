@@ -3,6 +3,12 @@ import mongoose from "mongoose";
 import cors from "cors";
 import http from "http";
 import { Server as SocketIO } from "socket.io";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 const app = express();
 const server = http.createServer(app);
@@ -311,6 +317,16 @@ app.get("/health", (req, res) => {
     mongodb: mongoose.connection.readyState === 1 ? "connected" : "disconnected",
     timestamp: new Date().toISOString()
   });
+});
+
+// ============================
+// 🍟 SERVIR FRONTEND (MONOLITO)
+// ============================
+const frontendPath = path.join(__dirname, "../frontend/dist");
+app.use(express.static(frontendPath));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
 });
 
 // ============================

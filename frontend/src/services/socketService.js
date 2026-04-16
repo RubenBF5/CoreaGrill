@@ -5,8 +5,8 @@ let socket = null
 export const initSocket = () => {
   if (socket && socket.connected) return socket
   
-  // URL tomada de variables de entorno o local
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+  // URL tomada de variables de entorno o auto-descubrimiento para monolito
+  const API_URL = import.meta.env.VITE_API_URL || undefined;
   
   socket = io(API_URL, {
     transports: ['websocket', 'polling'],

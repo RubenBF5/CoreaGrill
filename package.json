@@ -1,12 +1,12 @@
 {
-  "name": "coreagrill",
+  "name": "coreagrill-monolith",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "dev": "concurrently \"cd backend && node server.js\" \"cd frontend && npm run dev\"",
-    "start": "concurrently \"cd backend && node server.js\" \"cd frontend && npm run start\"",
-    "backend": "cd backend && node server.js",
-    "frontend": "cd frontend && npm run dev",
-    "frontend:host": "cd frontend && npm run start"
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "build:frontend": "cd frontend && npm run build",
+    "start": "cd backend && node server.js",
+    "koyeb-build": "npm run install:all && npm run build:frontend"
   },
   "dependencies": {
     "concurrently": "^9.2.1"
