@@ -22,13 +22,8 @@ const io = new SocketIO(server, {
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MongoDB (Base de datos propia del usuario)
-mongoose.connect("mongodb+srv://admin:hamburguesas123@coreagrill.efjzjy5.mongodb.net/coreagrill?retryWrites=true&w=majority")
-  .then(() => {
-    console.log("🟢 Conectado a TU PROPIA MongoDB");
-    inicializarDatos();
-  })
-  .catch(err => console.log("🔴 Error:", err));
+// La conexión se realiza al final del archivo para asegurar un inicio limpio
+
 
 // ============================
 // MODELOS
@@ -338,18 +333,22 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
 
-// ============================
-// 🚀 INICIAR SERVIDOR
-// ============================
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => {
-  console.log(`🔥 Servidor corriendo en http://localhost:${PORT}`);
-  console.log(`📊 Health check: http://localhost:${PORT}/health`);
-  console.log(`📋 Endpoints disponibles:`);
-  console.log(`   POST /login - Iniciar sesión`);
-  console.log(`   GET /users - Usuarios`);
-  console.log(`   GET /products - Productos`);
-  console.log(`   GET /inventory - Inventario`);
-  console.log(`   GET /orders - Órdenes`);
-  console.log(`   POST /orders - Crear orden`);
-});
+// Conexión a MongoDB (Base de datos propia del usuario)
+mongoose.connect("mongodb+srv://admin:hamburguesas123@coreagrill.efjzjy5.mongodb.net/coreagrill?retryWrites=true&w=majority")
+  .then(() => {
+    console.log("🟢 Conectado a TU PROPIA MongoDB");
+    inicializarDatos();
+    
+    // ============================
+    // 🚀 INICIAR SERVIDOR (Solo cuando la DB esté lista)
+    // ============================
+    const PORT = process.env.PORT || 3000;
+    server.listen(PORT, () => {
+      console.log(`🔥 Servidor corriendo en puerto ${PORT}`);
+      console.log(`📊 Health check listo`);
+    });
+  })
+  .catch(err => {
+    console.log("🔴 Error de conexión inicial:", err);
+    process.exit(1);
+  });
