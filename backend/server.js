@@ -108,6 +108,22 @@ async function inicializarDatos() {
         role: "admin"
       });
       
+      // Crear usuario chef demo
+      await User.create({
+        name: "Chef Principal",
+        user: "chef1",
+        pass: "chef123",
+        role: "chef"
+      });
+      
+      // Crear usuario mesero demo
+      await User.create({
+        name: "Mesero de Turno",
+        user: "mesero1",
+        pass: "mes123",
+        role: "mesero"
+      });
+      
       // Crear productos de ejemplo
       await Product.create([
         { name: "Hamburguesa Clásica", price: 65, cost: 30, cat: "hamburguesas", emoji: "🍔" },
