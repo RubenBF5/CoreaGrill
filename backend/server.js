@@ -22,9 +22,9 @@ const io = new SocketIO(server, {
 app.use(cors());
 app.use(express.json());
 
-// Conexión a MongoDB
-mongoose.connect("mongodb+srv://23307097_db_user:pmF0H4xGXCoFl2ou@cluster0.7bt7j2x.mongodb.net/coreagrill")
-  .then(() => console.log("🟢 Conectado a MongoDB"))
+// Conexión a MongoDB (Base de datos propia del usuario)
+mongoose.connect("mongodb+srv://admin:hamburguesas123@coreagrill.efjzjy5.mongodb.net/coreagrill?retryWrites=true&w=majority")
+  .then(() => console.log("🟢 Conectado a TU PROPIA MongoDB"))
   .catch(err => console.log("🔴 Error:", err));
 
 // ============================
